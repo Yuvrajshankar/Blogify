@@ -1,0 +1,2 @@
+# Blogify
+A MERN STACK BLOG APP
