@@ -51,6 +51,19 @@ app.use("/auth", authRoutes);
 app.post("/blog/create", verifyToken, upload.single("image"), createBlog);
 app.use("/blog", blogRoutes);
 
+// --------------- Deployment ---------------
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+    })
+} else {
+    console.log("API is Running Successfully");
+}
+
+
 // LISTEN / CONNECTION
 const PORT = process.env.PORT;
 mongoose
