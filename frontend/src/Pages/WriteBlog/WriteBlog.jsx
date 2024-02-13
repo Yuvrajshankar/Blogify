@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./WriteBlog.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function WriteBlog() {
+    const [user, setUser] = useState(null);
     const [paragraphs, setParagraphs] = useState(['']);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -47,6 +48,20 @@ function WriteBlog() {
             console.error('Error creating blog:', error);
         }
     }
+
+    useEffect(() => {
+        const checkLoggedIn = async () => {
+            try {
+                const response = await axios.get('/auth/already', { withCredentials: true });
+                setUser(response.data);
+            } catch (error) {
+                navigate("/login");
+                setUser(null);
+            }
+        }
+
+        checkLoggedIn();
+    }, []);
 
     const handleParagraphChange = (index, event) => {
         const newParagraphs = [...paragraphs];

@@ -3,8 +3,10 @@ import "./Profile.css";
 import axios from "axios";
 import Blog12 from '../../Components/Blog/Blog12';
 import Loader from '../../Components/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+    const navigate = useNavigate();
     const [profileData, setProfileData] = useState({});
     const [userBlogs, setUserBlogs] = useState([]);
 
@@ -23,12 +25,13 @@ function Profile() {
                 const response = await axios.get('/auth/profile', { withCredentials: true });
                 setProfileData(response.data);
             } catch (error) {
+                navigate("/login");
                 console.error('Error fetching User Blogs:', error);
             }
         }
 
         fetchUserProfile();
-        fetchUserBlogs(); // Call fetchUserBlogs here
+        fetchUserBlogs();
     }, []);
 
     const handleDelete = async (blogId) => {

@@ -13,31 +13,6 @@ import OtherProfile from './Pages/Profile/OtherProfile';
 import axios from "axios";
 
 function App() {
-  const [user, setUser] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const checkLoggedIn = async () => {
-      try {
-        const response = await axios.get('/auth/already', { withCredentials: true });
-        setUser(response.data);
-      } catch (error) {
-        setUser(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkLoggedIn();
-  }, []);
-
-
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-
   return (
     <BrowserRouter>
       <Routes>
@@ -49,15 +24,11 @@ function App() {
           </>} />
 
         <Route path='/profile' element={
-          user ? (
-            <>
-              <Navbar />
-              <Profile />
-              <Footer />
-            </>
-          ) : (
-            <Navigate to="/login" />
-          )
+          <>
+            <Navbar />
+            <Profile />
+            <Footer />
+          </>
         }
         />
 
@@ -69,15 +40,11 @@ function App() {
           </>} />
 
         <Route path='/create' element={
-          user ? (
-            <>
-              <Navbar />
-              <WriteBlog />
-              <Footer />
-            </>
-          ) : (
-            <Navigate to="/login" />
-          )
+          <>
+            <Navbar />
+            <WriteBlog />
+            <Footer />
+          </>
         }
         />
 
