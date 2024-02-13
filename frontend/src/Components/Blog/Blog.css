@@ -1,0 +1,76 @@
+.bloggs {
+  display: flex;
+  background-color: #ccc;
+  padding: 10px;
+  height: 20vh;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border-radius: 8px;
+}
+
+.bloggs:hover {
+  transform: scale(1.02);
+  background-color: black;
+  color: white;
+}
+
+.bloggs img {
+  width: 200px;
+  border-radius: 8px;
+  margin-left: 10px;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.bloggs__info {
+  flex: 1;
+}
+
+.bloggs h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.bloggs h6 {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.bloggs h6 span {
+  font-weight: bold;
+  color: brown;
+}
+
+.bloggs h6 span:hover {
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.bloggs p {
+  font-size: 1rem;
+  line-height: 1.4;
+  max-width: 60vw;
+}
+
+@media screen and (max-width: 750px) {
+  .bloggs img {
+    margin-left: 0px;
+    height: 20vh;
+    width: 20vw;
+  }
+
+  .bloggs h3 {
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+
+  .bloggs p {
+    font-size: 10px;
+    line-height: 1.4;
+    max-width: 60vw;
+  }
+}

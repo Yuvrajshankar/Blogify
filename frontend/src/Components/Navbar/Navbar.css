@@ -1,0 +1,117 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  top: 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logo:hover {
+  color: gray;
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header__searchInput {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  width: 50vw;
+  outline: none;
+}
+
+.header__searchIcon {
+  cursor: pointer;
+  position: absolute;
+  color: black;
+  right: 8px;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+}
+
+.write,
+.login {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.write {
+  color: #333;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.write:hover {
+  background-color: #333;
+  color: gray;
+}
+
+.login:hover {
+  color: gray;
+}
+
+.logout__text:hover {
+  color: red;
+}
+
+.profile__img img {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.options .icon {
+  display: none;
+}
+
+@media screen and (max-width: 740px) {
+  .options .ok {
+    display: none;
+  }
+  .options .icon {
+    display: block;
+    cursor: pointer;
+    margin-right: 5px;
+    /* padding: 2px; */
+  }
+  .write {
+    padding: 2px;
+  }
+
+  .logout {
+    color: red;
+  }
+
+  .logout:hover {
+    color: rgb(232, 138, 138);
+  }
+}

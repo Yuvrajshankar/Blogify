@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  width: auto;
+  padding: 30px 0 0 20px;
+  background: #333;
+  font-family: "Poppins", sans-serif;
+  margin-top: auto;
+  flex-wrap: wrap;
+  bottom: 0px;
+}
+
+footer .footer_main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+footer .footer_main .footer_tag {
+  text-align: center;
+}
+
+footer .footer_main .footer_tag h2 {
+  color: #c1c1c1;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+footer .footer_main .footer_tag p {
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: gray;
+}
+
+footer .footer_main .footer_tag p:hover {
+  color: white;
+}
+
+footer .footer_main .footer_tag i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+footer .footer_main .footer_tag i:hover {
+  color: #31d5fa;
+}
+
+footer .end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+footer .end span {
+  color: brown;
+  margin-left: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+  footer .footer_main {
+    grid-template-columns: 1fr;
+  }
+}
