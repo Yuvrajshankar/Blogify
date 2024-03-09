@@ -39,7 +39,7 @@ function OtherProfile() {
 
                 {profileData ? (
                     <div className="profile__details">
-                        <img src={`/pics/${profileData.profileImage}`} alt="profile-img" />
+                        <img src={profileData.profileImage} alt="profile-img" />
 
                         <div className="profile__info">
                             <h1>{profileData.name}</h1>
@@ -57,7 +57,7 @@ function OtherProfile() {
                     userBlogs.map((blog) => (
                         <Blog
                             key={blog._id}
-                            image={`/pics/${blog.image}`}
+                            image={blog.image}
                             title={blog.title}
                             writer={blog.name}
                             summary={blog.summary}

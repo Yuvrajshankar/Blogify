@@ -14,17 +14,37 @@ function WriteBlog() {
         fullBlog: '',
     });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const handleChange = async (e) => {
+        if (e.target.name === 'image') {
+            const file = e.target.files[0];
+            if (file) {
+                try {
+                    const data = new FormData();
+                    data.append('file', file);
+                    data.append("upload_preset", "yuvraj");
+                    data.append("cloud_name", "dkh984g6c");
 
-    const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0];
-        if (selectedImage) {
-            setFormData({ ...formData, image: selectedImage });
+                    const response = await fetch("https://api.cloudinary.com/v1_1/dkh984g6c/image/upload", {
+                        method: "POST",
+                        body: data,
+                    });
+                    const result = await response.json();
+                    setFormData(prevFormData => ({
+                        ...prevFormData,
+                        image: result.url,
+                    }));
+                } catch (error) {
+                    console.error('Image upload failed:', error);
+                }
+            }
+        } else {
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [e.target.name]: e.target.value,
+            }));
         }
-    };
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +60,7 @@ function WriteBlog() {
             const response = await axios.post('/blog/create', formDataToSend, {
                 withCredentials: true,
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-type": "application/json",
                 },
             });
             navigate('/');
@@ -78,9 +98,9 @@ function WriteBlog() {
             <div className="create">
                 <h1>Write a Blog</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="file" id='imageInput' name='image' accept='image/' onChange={handleImageChange} required />
-                    <input type="text" name="title" placeholder='Blog Title' onChange={handleInputChange} required />
-                    <textarea name="summary" maxLength="200" placeholder='summary of your blog' onChange={handleInputChange} required></textarea>
+                    <input type="file" id='imageInput' name='image' accept='image/' onChange={handleChange} required />
+                    <input type="text" name="title" placeholder='Blog Title' onChange={handleChange} required />
+                    <textarea name="summary" maxLength="200" placeholder='summary of your blog' onChange={handleChange} required></textarea>
 
                     {paragraphs.map((paragraph, index) => (
                         <textarea

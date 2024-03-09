@@ -4,8 +4,7 @@ import User from "../models/User.js";
 // CREATE
 export const createBlog = async (req, res, next) => {
     try {
-        const { title, summary, fullBlog } = req.body;
-        const image = req.file ? req.file.filename : '';
+        const { image, title, summary, fullBlog } = req.body;
 
         const userId = req.user._id;
         const user = await User.findById(userId);

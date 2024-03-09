@@ -28,7 +28,7 @@ function FullBlog() {
         <div className='fullBlog'>
             <div className="head">
                 <div className="title">{blog.title}</div>
-                <img className='image' src={`/pics/${blog.image}`} alt="" />
+                <img className='image' src={blog.image} alt="" />
             </div>
 
             <div className="blog_container">
@@ -38,7 +38,7 @@ function FullBlog() {
 
                 <div className="author">
                     <div className="auimage">
-                        <img src={`/pics/${blog.profileImage}`} alt="author" />
+                        <img src={blog.profileImage} alt="author" />
                     </div>
                     <div className="about">
                         <div className="auname" onClick={userNavigate}>{blog.name}</div>

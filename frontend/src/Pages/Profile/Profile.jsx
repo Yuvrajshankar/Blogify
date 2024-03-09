@@ -51,7 +51,7 @@ function Profile() {
 
                 {profileData ? (
                     <div className="profile__details">
-                        <img src={`/pics/${profileData.profileImage}`} alt="profile-img" />
+                        <img src={profileData.profileImage} alt="profile-img" />
 
                         <div className="profile__info">
                             <h1>{profileData.name}</h1>
@@ -69,7 +69,7 @@ function Profile() {
                     userBlogs.map((blog) => (
                         <Blog12
                             key={blog._id}
-                            image={`/pics/${blog.image}`}
+                            image={blog.image}
                             title={blog.title}
                             writer={blog.userName}
                             summary={blog.summary}

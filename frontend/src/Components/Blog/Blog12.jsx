@@ -11,15 +11,6 @@ function Blog12({ image, title, writer, summary, blogId, onDelete }) {
         navigate(`/blog/${blogId}`);
     };
 
-    // const handleDelete = async () => {
-    //     try {
-    //         await axios.delete(`/blog/${blogId}`, { withCredentials: true });
-
-    //     } catch (error) {
-    //         console.error('Error deleting blog:', error);
-    //     }
-    // };
-
     return (
         <div className="bloggs">
             <img onClick={blogNavigate} src={image} alt="blog-image" />

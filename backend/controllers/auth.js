@@ -5,8 +5,7 @@ import { generateToken } from "../middlewares/generateToken.js";
 // REGISTER
 export const register = async (req, res, next) => {
     try {
-        const { name, email, password } = req.body;
-        const profileImage = req.file ? req.file.filename : '';
+        const { profileImage, name, email, password } = req.body;
 
         const userExists = await User.findOne({ email });
         if (userExists) {

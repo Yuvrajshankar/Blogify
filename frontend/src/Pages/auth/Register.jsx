@@ -18,16 +18,48 @@ function Register() {
         password: '',
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleAddPhotoClick = () => {
+        document.getElementById('imageInput').click();
     };
+
+    const handleChange = async (e) => {
+        if (e.target.name === 'profileImage') {
+            const file = e.target.files[0];
+            if (file) {
+                try {
+                    setImage(URL.createObjectURL(file));
+                    const data = new FormData();
+                    data.append('file', file);
+                    data.append("upload_preset", "yuvraj");
+                    data.append("cloud_name", "dkh984g6c");
+
+                    const response = await fetch("https://api.cloudinary.com/v1_1/dkh984g6c/image/upload", {
+                        method: "POST",
+                        body: data,
+                    });
+                    const result = await response.json();
+                    setFormData(prevFormData => ({
+                        ...prevFormData,
+                        profileImage: result.url,
+                    }));
+                } catch (error) {
+                    console.error('Image upload failed:', error);
+                }
+            }
+        } else {
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                [e.target.name]: e.target.value,
+            }));
+        }
+    }
 
     const register = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/auth/register', formData, {
+            await axios.post("/auth/register", formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-type": "application/json",
                 },
             });
             navigate('/login');
@@ -46,17 +78,14 @@ function Register() {
     };
 
     // Image
-    const handleImageChange = (e) => {
-        const selectedImage = e.target.files[0];
-        if (selectedImage) {
-            setImage(URL.createObjectURL(selectedImage));
-            setFormData({ ...formData, profileImage: selectedImage });
-        }
-    };
+    // const handleImageChange = (e) => {
+    //     const selectedImage = e.target.files[0];
+    //     if (selectedImage) {
+    //         setImage(URL.createObjectURL(selectedImage));
+    //         setFormData({ ...formData, profileImage: selectedImage });
+    //     }
+    // };
 
-    const handleAddPhotoClick = () => {
-        document.getElementById('imageInput').click();
-    };
 
     return (
         <div className="registration__container">
@@ -73,7 +102,7 @@ function Register() {
                         )}
                     </div>
 
-                    <input type="file" id="imageInput" accept='image/*' onChange={handleImageChange} style={{ display: 'none' }} required />
+                    <input type="file" name='profileImage' id="imageInput" accept='image/*' onChange={handleChange} style={{ display: 'none' }} required />
                     <input type="text" className='auth__input' placeholder='User Name' name='name' onChange={handleChange} required />
                     <input type="email" className='auth__input' placeholder='Email' name='email' onChange={handleChange} required />
 

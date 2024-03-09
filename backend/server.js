@@ -16,39 +16,18 @@ import blogRoutes from "./routes/blog.js";
 // CONFIGURATION
 dotenv.config();
 const app = express();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // MIDDLEWARES
 app.use(express.json());
 app.use(cookieParser());
-app.use("/pics", express.static(path.join(__dirname, "images")));
-
-// FILE STORAGE
-const uploadDirectory = path.join(__dirname, "images");
-if (!fs.existsSync(uploadDirectory)) {
-    fs.mkdirSync(uploadDirectory);
-}
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadDirectory);
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    },
-});
-const upload = multer({ storage });
 
 // ROUTES
 app.use(errorHandler);
 
 /* auth */
-app.post("/auth/register", upload.single("profileImage"), register);
 app.use("/auth", authRoutes);
 
 /* blog */
-app.post("/blog/create", verifyToken, upload.single("image"), createBlog);
 app.use("/blog", blogRoutes);
 
 // --------------- Deployment ---------------

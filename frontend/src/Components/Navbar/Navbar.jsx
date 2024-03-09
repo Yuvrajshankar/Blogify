@@ -58,7 +58,7 @@ function Navbar() {
                         <h3 className="login ok logout__text" onClick={logout}>Log out</h3>
                         <Link to="/profile" style={{ textDecoration: "none" }}>
                             <div className="profile__img">
-                                <img src={`pics/${user.profileImage}`} alt="profile" />
+                                <img src={user.profileImage} alt="profile" />
                             </div>
                         </Link>
                     </>

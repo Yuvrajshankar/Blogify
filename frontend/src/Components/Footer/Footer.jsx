@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Footer.css";
+import { Link } from "react-router-dom";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -21,9 +22,17 @@ function Footer() {
 
         <div className="footer_tag">
           <h2>Quick Link</h2>
-          <p>Home</p>
-          <p>Profile</p>
-          <p>Write Blog</p>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <p>Home</p>
+          </Link>
+
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <p>Profile</p>
+          </Link>
+
+          <Link to="/create" style={{ textDecoration: "none" }}>
+            <p>Write Blog</p>
+          </Link>
         </div>
 
         <div className="footer_tag">
@@ -43,10 +52,18 @@ function Footer() {
 
         <div className="footer_tag">
           <h2>Follows</h2>
-          <i><FacebookRoundedIcon /></i>
-          <i><TwitterIcon /></i>
-          <i><InstagramIcon /></i>
-          <i><LinkedInIcon /></i>
+          <Link to="https://www.facebook.com" style={{ color: "#000" }}>
+            <i><FacebookRoundedIcon /></i>
+          </Link>
+          <Link to="https://www.x.com" style={{ color: "#000" }}>
+            <i><TwitterIcon /></i>
+          </Link>
+          <Link to="https://www.instagram.com" style={{ color: "#000" }}>
+            <i><InstagramIcon /></i>
+          </Link>
+          <Link to="https://www.linkedin.com" style={{ color: "#000" }}>
+            <i><LinkedInIcon /></i>
+          </Link>
         </div>
 
       </div>

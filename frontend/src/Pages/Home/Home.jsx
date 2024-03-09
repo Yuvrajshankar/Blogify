@@ -21,7 +21,7 @@ function Home() {
                 {blogs.slice(0).reverse().map(blog => (
                     <Blog
                         key={blog._id}
-                        image={`/pics/${blog.image}`}
+                        image={blog.image}
                         title={blog.title}
                         writer={blog.name}
                         summary={blog.summary}
